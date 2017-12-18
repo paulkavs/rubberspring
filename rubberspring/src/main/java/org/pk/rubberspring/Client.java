@@ -16,5 +16,9 @@ public class Client {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Client: " + "id=" + id;
+	}
 }
