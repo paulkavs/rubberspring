@@ -1,5 +1,7 @@
 package org.pk.rubberspring;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
@@ -17,28 +19,31 @@ public class App implements CommandLineRunner{
 		System.out.println("hello queue");
 
 		// PriorityQueue example with Comparator
-		Queue<Client> ClientPriorityQueue = new PriorityQueue<Client>(new ClientComparator());
+		Queue<Order> ClientPriorityQueue = new PriorityQueue<Order>(new ClientComparator());
 		addDataToQueue(ClientPriorityQueue);
 		pollDataFromQueue(ClientPriorityQueue);
 
 	}
 
 	// utility method to add random data to Queue
-	private static void addDataToQueue(Queue<Client> ClientPriorityQueue) {
+	private static void addDataToQueue(Queue<Order> ClientPriorityQueue) {
 		Random rand = new Random();
 		for (int i = 0; i < 70; i++) {
 			int id = rand.nextInt(20000);
-			ClientPriorityQueue.add(new Client(id));
+			int quantity = rand.nextInt(20);
+			LocalDateTime timestamp = LocalDateTime.now();
+			ClientPriorityQueue.add(new Order(id, quantity, timestamp));
 		}
 	}
 
 	// utility method to poll data from queue
-	private static void pollDataFromQueue(Queue<Client> ClientPriorityQueue) {
+	private static void pollDataFromQueue(Queue<Order> ClientPriorityQueue) {
 		while (true) {
-			Client client = ClientPriorityQueue.poll();
-			if (client == null)
+			Order order = ClientPriorityQueue.poll();
+			if (order == null)
 				break;
-			System.out.println("Processing Client with ID=" + client.getId());
+			System.out.println("Processing Order with ClientId=" + order.getClientId() + " quantity=" + order.getQuantity()+ " time spent in queue="+ Duration.between(LocalDateTime.now(),order.getTimestamp())
+			);
 		}
 	}
 
