@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class App implements CommandLineRunner{
+	
+	public static Queue<Order> clientPriorityQueue=null;
 
 	public static void main(String[] args) throws Exception {
 
@@ -19,9 +21,9 @@ public class App implements CommandLineRunner{
 		System.out.println("hello queue");
 
 		// PriorityQueue example with Comparator
-		Queue<Order> ClientPriorityQueue = new PriorityQueue<Order>(new ClientComparator());
-		addDataToQueue(ClientPriorityQueue);
-		pollDataFromQueue(ClientPriorityQueue);
+		clientPriorityQueue = new PriorityQueue<Order>(new ClientComparator());
+		addDataToQueue(clientPriorityQueue);
+		pollDataFromQueue(clientPriorityQueue);
 
 	}
 
