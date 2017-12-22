@@ -29,13 +29,18 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public String getOrderDetails(int orderId) {
-		String position = ("order with client ID: " + orderId + " is at position: " + orders.indexOf(orderId)
-				+ " in a queue of " + orders.size() + " orders.");
-		Order order = orders.get(orders.indexOf(orderId));
-		int orderQuantity = order.getQuantity();
-		String waitTime = getWaitTime(orders.indexOf(orderId), orderQuantity);
-		return position+waitTime;
+	public String getOrderDetails(int clientId) {
+		for (Order order : orders) {
+			if (order.getClientId() == clientId) {
+				String position = ("order with client ID: " + clientId + " is at position: " + orders.indexOf(clientId)
+						+ " in a queue of " + orders.size() + " orders.");
+				Order ord = orders.get(orders.indexOf(clientId));
+				int orderQuantity = ord.getQuantity();
+				String waitTime = getWaitTime(orders.indexOf(clientId), orderQuantity);	
+				return position+waitTime;
+			}
+		}
+		return "order not found in queue";
 	}
 
 	/*Calculate the total waiting period for this order to be fulfilled assuming max orderQuantity<=25
