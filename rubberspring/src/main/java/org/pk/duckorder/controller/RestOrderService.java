@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.pk.duckorder.Order;
+import org.springframework.http.ResponseEntity;
 
 /**
  * A JAX-RS Resource interface where we define the RESTful web service, using
@@ -50,7 +51,7 @@ public interface RestOrderService {
 	 * The POST create order operation for client
 	 */
 	@POST
-	String createOrder(Order order);
+	ResponseEntity<Void> createOrder(Order order);
 
 	/**
 	 * The DELETE cancel order operation for client
