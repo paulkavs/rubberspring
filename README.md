@@ -12,33 +12,35 @@ In a REst Client (DHC/Postman)
 	 * The POST create order operation for client
 	 */
 	@POST
-	String createOrder(Order order);
+	url: localhost:8080/api/createOrder
+	Body:
+	e.g. { "clientId":1234, "quantity":3 }
 
 	/**
 	 * The GET order position and wait time by Client id operation for client
 	 */
 	@GET
-	@Path("/{id}")
-	String getOrderDetails(@PathParam("id") int clientId);
+	url: http://localhost:8080/api/getOrderDetails/{clientId}
+	e.g. http://localhost:8080/api/getOrderDetails/1234;
 
 	/**
 	 * The DELETE cancel order operation for client
 	 */
 	@DELETE
-	@Path("/{id}")
-	String cancelOrder(@PathParam("id") int clientId); 
+	url: http://localhost:8080/api/cancelOrder/clientId 
+	e.g. http://localhost:8080/api/cancelOrder/1234 
 
 	/**
 	 * The GET all orders operation for manager
 	 */
 	@GET
-	List<Order> getAllOrders();
+	url: http://localhost:8080/api/getAllOrders
 
 	/**
 	 * The GET next delivery operation for Joe
-	 */
+	 * this method should be called every 5 minutes by Joe 
 	@GET
-	List<Order> getNextDelivery();
+	url: http://localhost:8080/api/getNextDelivery/
 
 
 	

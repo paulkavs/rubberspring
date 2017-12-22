@@ -21,10 +21,13 @@ public class Order {
 	public Order() {
 	}
 
-	public Order(Integer clientId, Integer quantity, LocalDateTime timestamp) {
+	public Order(Integer clientId, Integer quantity) {
 		this.clientId = clientId;
+		if(quantity>25 ||quantity<1){
+			this.quantity=25;
+		}
 		this.quantity = quantity;
-		this.timestamp = timestamp;
+		this.timestamp = LocalDateTime.now();
 	}
 
 	public Integer getClientId() {
