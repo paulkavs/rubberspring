@@ -1,10 +1,10 @@
-package org.pk.rubberspring;
+package org.pk.duckorder;
 
 import java.util.Comparator;
 
-public class ClientComparator implements Comparator<Order> {
+public class OrderSort implements Comparator<Order> {
 
-	public ClientComparator() {
+	public OrderSort() {
 		// TODO Auto-generated constructor stub
 	}
 

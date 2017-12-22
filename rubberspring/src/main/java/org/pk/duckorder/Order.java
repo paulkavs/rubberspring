@@ -1,11 +1,21 @@
-package org.pk.rubberspring;
+package org.pk.duckorder;
 
 import java.time.LocalDateTime;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "order")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Order {
 
+	@XmlAttribute
 	private Integer clientId;
+	@XmlAttribute
 	private Integer quantity;
+	@XmlAttribute
 	private LocalDateTime timestamp;
 
 	public Order() {
